@@ -1,15 +1,15 @@
 web_scraping:
   # URL початкової сторінки для збору даних
-  start_page: https://life.com.ua
+  start_page: https://rozetka.com.ua/ua/
   
   # CSS селектор для отримання назв продуктів
-  product_name_selector: ".product-title"
+  product_name_selector: "a.title"
   
   # CSS селектор для отримання цін продуктів
-  product_price_selector: ".product-price__item"
+  product_price_selector: "div.price "
   
   # CSS селектор для отримання опису продуктів
-  product_description_selector: ".product-description"
+  product_description_selector: ""
   
   # CSS селектор для отримання зображень продуктів
-  product_image_selector: ".gallery__link"
+  product_image_selector: "img.image"
