@@ -3,9 +3,9 @@ require 'logger'
 require 'zip'
 require 'sidekiq'
 require 'pony'
-require_relative 'simple_website_parser'
-require_relative 'database_connector'
-require_relative 'logger_manager'
+require_relative 'simpleWebsiteParser'
+require_relative 'databaseConnector'
+require_relative 'loggerManager'
 
 class Engine
   attr_accessor :config

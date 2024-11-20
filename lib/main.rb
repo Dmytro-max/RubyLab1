@@ -7,12 +7,12 @@
 # puts(URI.open('https://smartcinema.ua/'))
 
 
-require 'yaml'
-require 'mechanize'
 require 'logger'
 require 'fileutils'
-require 'nokogiri'
 require 'open-uri'
+require 'yaml'
+require 'mechanize'
+require 'nokogiri'
 require 'concurrent-ruby'
 
 require_relative 'appConfigLoader'
@@ -21,8 +21,8 @@ require_relative 'loggerManager'
 loader = AppConfigLoader.new
 loader.load_libs
 
-loader.config(config_path: '../config/default_config.yaml', yaml_directory: '../config') do |config|
-  logging_config = YAML.load_file('logging.yaml')
+loader.config(config_path: File.join(__dir__, '../config/default_config.yaml'), yaml_directory: '../config') do |config|
+  logging_config = YAML.load_file('../config/log_config.yaml')
   MyApplicationName::LoggerManager.initialize_logger(logging_config)
 end
 

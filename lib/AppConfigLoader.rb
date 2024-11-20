@@ -11,6 +11,7 @@ class AppConfigLoader
   end
 
   def config(config_path:, yaml_directory:)
+    
     load_default_config(config_path)
     load_config(yaml_directory)
     yield(@config_data) if block_given?
@@ -28,7 +29,7 @@ class AppConfigLoader
     end
 
     # Локальні бібліотеки
-    Dir.glob('libs/**/*.rb').each do |file|
+    Dir.glob('../lib/**/*.rb').each do |file|
       next if @loaded_files.include?(file)
       require_relative file
       @loaded_files << file
