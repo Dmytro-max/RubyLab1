@@ -1,23 +1,26 @@
-require 'yaml'
-require 'logger'
 require 'zip'
 require 'sidekiq'
 require 'pony'
-require_relative 'simpleWebsiteParser'
-require_relative 'databaseConnector'
-require_relative 'loggerManager'
+# require_relative 'simpleWebsiteParser'
+# require_relative 'databaseConnector'
+# require_relative 'loggerManager'
 
 class Engine
   attr_accessor :config
 
-  def initialize(config_file)
-    @config_file = config_file
-    @config = load_config
-    initialize_logging
-  end
+  @config_file = 'application.yaml'
+  @config_directory = 'config'
+
+  # def initialize(config_file)
+  #   @config_file = config_file
+  #   @config = load_config
+  #   initialize_logging
+  # end
 
   def load_config
-    YAML.load_file(@config_file).tap do
+    config_path = "..\\{@config_directory}\\{@config_file}"
+    puts config_path
+    YAML.load_file(config_path).tap do
       LoggerManager.log_processed_file("Configuration loaded from #{@config_file}")
     end
   rescue StandardError => e
@@ -181,5 +184,6 @@ class ArchiveSender
 end
 
 # Приклад використання
-engine = Engine.new('config.yml')
-engine.run
+# engine = Engine.new('config.yml')
+# engine = Engine.new
+# engine.run

@@ -9,8 +9,12 @@ GEM
     connection_pool (2.4.1)
     date (3.4.0)
     domain_name (0.6.20240107)
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     http-cookie (1.0.7)
       domain_name (~> 0.5)
+    i18n (1.14.6)
+      concurrent-ruby (~> 1.0)
     json (2.7.2)
     language_server-protocol (3.17.0.3)
     logger (1.6.1)
@@ -97,6 +101,7 @@ PLATFORMS
 
 DEPENDENCIES
   concurrent-ruby
+  faker
   mechanize
   nokogiri
   pony

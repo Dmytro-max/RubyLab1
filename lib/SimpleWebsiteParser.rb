@@ -81,6 +81,6 @@ module MyApplicationName
     end
   end
   
-  # Приклад використання
-  parser = MyApplicationName::SimpleWebsiteParser.new('config.yml')
-  parser.start_parse
+  # # Приклад використання
+  # parser = MyApplicationName::SimpleWebsiteParser.new('config.yml')
+  # parser.start_parse

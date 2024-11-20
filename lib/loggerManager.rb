@@ -1,6 +1,3 @@
-require 'yaml'
-require 'logger'
-
 module MyApplicationName
   class LoggerManager
     class << self

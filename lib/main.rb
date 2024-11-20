@@ -18,15 +18,17 @@ require 'concurrent-ruby'
 require_relative 'appConfigLoader'
 require_relative 'loggerManager'
 
-loader = AppConfigLoader.new
-loader.load_libs
+puts "directory exists" if Dir.exist?('../config')
 
-loader.config(config_path: File.join(__dir__, '../config/default_config.yaml'), yaml_directory: '../config') do |config|
-  logging_config = YAML.load_file('../config/log_config.yaml')
-  MyApplicationName::LoggerManager.initialize_logger(logging_config)
-end
+# loader = AppConfigLoader.new
+# loader.load_libs
 
-loader.pretty_print_config_data
+# loader.config(config_path: ('../config/default_config.yaml'), yaml_directory: '../config') do |config|
+#   logging_config = YAML.load_file('../config/log_config.yaml')
+#   MyApplicationName::LoggerManager.initialize_logger(logging_config)
+# end
 
-MyApplicationName::LoggerManager.log_processed_file('This is an info message.')
-MyApplicationName::LoggerManager.log_error('This is an error message.')
+# loader.pretty_print_config_data
+
+# MyApplicationName::LoggerManager.log_processed_file('This is an info message.')
+# MyApplicationName::LoggerManager.log_error('This is an error message.')

@@ -11,7 +11,6 @@ class AppConfigLoader
   end
 
   def config(config_path:, yaml_directory:)
-    
     load_default_config(config_path)
     load_config(yaml_directory)
     yield(@config_data) if block_given?
@@ -22,14 +21,14 @@ class AppConfigLoader
   end
 
   def load_libs
-    # Системні бібліотеки
-    system_libs = ['date', 'json', 'yaml', 'erb']
+    system_libs = ['date', 'json', 'yaml', 'erb', 'logger']
     system_libs.each do |lib|
       require lib
     end
 
-    # Локальні бібліотеки
     Dir.glob('../lib/**/*.rb').each do |file|
+
+      puts "Processed file: #{file}"
       next if @loaded_files.include?(file)
       require_relative file
       @loaded_files << file
@@ -60,7 +59,7 @@ end
 # Приклад використання
 loader = AppConfigLoader.new
 loader.load_libs
-loader.config(config_path: 'default_config.yaml', yaml_directory: 'config') do |config|
+loader.config(config_path: '../config/default_config.yaml', yaml_directory: '../config') do |config|
   # Обробка даних
 end
 loader.pretty_print_config_data
