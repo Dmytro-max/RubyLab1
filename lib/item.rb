@@ -1,7 +1,6 @@
 require 'faker'
-require 'logger'
 
-module MyApplicationName  
+module Project_Hope  
   class Item
     include Comparable
 

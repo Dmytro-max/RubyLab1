@@ -1,10 +1,8 @@
 require 'json'
 require 'csv'
-require 'yaml'
 require 'faker'
-require 'logger'
 
-module MyApplicationName
+module Project_Hope
 
   module ItemContainer
     def self.included(base)

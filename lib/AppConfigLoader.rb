@@ -48,6 +48,7 @@ class AppConfigLoader
 
   def load_config(yaml_directory)
     Dir[File.join(yaml_directory, '*.yaml')].each do |file|
+      puts "Config file: #{file}"
       erb = ERB.new(File.read(file)).result
       @config_data.merge!(YAML.safe_load(erb))
     end

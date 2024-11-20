@@ -18,7 +18,7 @@ require 'concurrent-ruby'
 require_relative 'appConfigLoader'
 require_relative 'loggerManager'
 
-puts "directory exists" if Dir.exist?('../config')
+# puts "directory exists" if Dir.exist?('../config')
 
 # loader = AppConfigLoader.new
 # loader.load_libs

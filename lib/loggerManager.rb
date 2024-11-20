@@ -1,4 +1,4 @@
-module MyApplicationName
+module Project_Hope
   class LoggerManager
     class << self
       attr_reader :logger

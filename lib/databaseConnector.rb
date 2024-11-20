@@ -1,7 +1,7 @@
 require 'sqlite3'
 require 'mongo'
 
-module MyApplicationName
+module Project_Hope
 
     class DatabaseConnector
         attr_accessor :db

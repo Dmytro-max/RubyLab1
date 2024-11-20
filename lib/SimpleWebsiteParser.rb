@@ -1,4 +1,4 @@
-module MyApplicationName
+module Project_Hope
 
     class SimpleWebsiteParser
       attr_accessor :config, :agent, :item_collection
