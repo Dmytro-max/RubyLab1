@@ -34,19 +34,19 @@ class Configurator
   end
 end
 
-# Приклад використання
-configurator = Configurator.new
-puts configurator.config
+# # Приклад використання
+# configurator = Configurator.new
+# puts configurator.config
 
-# Налаштування конфігураційних параметрів
-configurator.configure(
-  run_website_parser: 1,      # Включити розбір сайту
-  run_save_to_csv: 1,         # Включити збереження даних в CSV
-  run_save_to_yaml: 1,        # Включити збереження даних в YAML
-  run_save_to_sqlite: 1       # Включити збереження даних в базі даних SQLite
-)
+# # Налаштування конфігураційних параметрів
+# configurator.configure(
+#   run_website_parser: 1,      # Включити розбір сайту
+#   run_save_to_csv: 1,         # Включити збереження даних в CSV
+#   run_save_to_yaml: 1,        # Включити збереження даних в YAML
+#   run_save_to_sqlite: 1       # Включити збереження даних в базі даних SQLite
+# )
 
-puts configurator.config
+# puts configurator.config
 
-# Виведення доступних методів
-puts Configurator.available_methods
+# # Виведення доступних методів
+# puts Configurator.available_methods

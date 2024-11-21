@@ -27,8 +27,8 @@ class AppConfigLoader
     end
 
     Dir.glob('../lib/**/*.rb').each do |file|
-
-      puts "Processed file: #{file}"
+      puts "Loaded lib: #{file}"
+      
       next if @loaded_files.include?(file)
       require_relative file
       @loaded_files << file
@@ -49,6 +49,7 @@ class AppConfigLoader
   def load_config(yaml_directory)
     Dir[File.join(yaml_directory, '*.yaml')].each do |file|
       puts "Config file: #{file}"
+
       erb = ERB.new(File.read(file)).result
       @config_data.merge!(YAML.safe_load(erb))
     end
@@ -58,9 +59,9 @@ class AppConfigLoader
 end
 
 # Приклад використання
-loader = AppConfigLoader.new
-loader.load_libs
-loader.config(config_path: '../config/default_config.yaml', yaml_directory: '../config') do |config|
-  # Обробка даних
-end
-loader.pretty_print_config_data
+# loader = AppConfigLoader.new
+# loader.load_libs
+# loader.config(config_path: '../config/default_config.yaml', yaml_directory: '../config') do |config|
+#   # Обробка даних
+# end
+# loader.pretty_print_config_data

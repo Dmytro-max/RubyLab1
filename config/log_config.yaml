@@ -1,6 +1,6 @@
 logging:
-  # Місце розміщення папки для логів
-  directory: "logs"
+# Місце розміщення папки для логів
+  directory: "../logs"
   # Рівень логування (DEBUG, INFO, WARN, ERROR)
   level: "DEBUG"   
   files:
