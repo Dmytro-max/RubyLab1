@@ -54,7 +54,7 @@ module Project_Hope
     end
   end
 
-  class Cart
+  class ItemCollection
     include ItemContainer
     include Enumerable
 
@@ -63,7 +63,7 @@ module Project_Hope
     def initialize
       @items = []
       self.class.increment_object_count
-      LoggerManager.log_processed_file("Initialized Cart")
+      LoggerManager.log_processed_file("Initialized ItemCollection")
     end
 
     def each(&block)
@@ -96,7 +96,7 @@ module Project_Hope
       LoggerManager.log_processed_file("Saved items to #{filename}")
     end
 
-    def save_to_yml
+    def save_to_yml(filename = 'items.yml')
       filename.end_with?('.yml') || filename.concat('.yml')
 
      @items.each do |item|
@@ -160,3 +160,6 @@ module Project_Hope
     end
   end
 end
+
+
+
