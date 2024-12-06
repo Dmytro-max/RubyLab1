@@ -6,8 +6,8 @@ module Project_Hope
     class DatabaseConnector
         attr_accessor :db
 
-        def initialize(config_file)
-            @config = YAML.load_file(config_file)
+        def initialize(config)
+            @config = config
             @db = nil
             LoggerManager.log_processed_file("Initialized DatabaseConnector with config: #{@config}")
         end
@@ -16,21 +16,21 @@ module Project_Hope
         def connect_to_database
             case @config['database_type']
             when 'sqlite'
-            connect_to_sqlite
+                connect_to_sqlite
             when 'mongodb'
-            connect_to_mongodb
+                connect_to_mongodb
             else
-            LoggerManager.log_error("Unsupported database type: #{@config['database_type']}")
+                LoggerManager.log_error("Unsupported database type: #{@config['database_type']}")
             raise "Unsupported database type: #{@config['database_type']}"
             end
         end
 
         def close_connection
             if @db
-            @db.close if @config['database_type'] == 'sqlite'
-            @db.close if @config['database_type'] == 'mongodb'
-            LoggerManager.log_processed_file("Closed connection to #{@config['database_type']} database")
-            @db = nil
+                @db.close if @config['database_type'] == 'sqlite'
+                @db.close if @config['database_type'] == 'mongodb'
+                LoggerManager.log_processed_file("Closed connection to #{@config['database_type']} database")
+                @db = nil
             end
         end
 

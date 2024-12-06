@@ -6,6 +6,7 @@ class AppConfigLoader
   attr_reader :config_data
 
   def initialize
+    puts "init! "
     @config_data = {}
     @loaded_files = []
   end
@@ -23,18 +24,21 @@ class AppConfigLoader
   def load_libs
     system_libs = ['date', 'json', 'yaml', 'erb', 'logger']
     system_libs.each do |lib|
+      # puts "Loaded system lib #{lib} of type #{lib.class}"
       require lib
     end
 
-    Dir.glob('../lib/**/*.rb').each do |file|
-      puts "Loaded lib: #{file}"
+    # puts "path: #{File.expand_path(('./lib/**/*.rb'))}"
+
+    Dir.glob('./lib/**/*.rb').each do |file|
+      # puts "Loaded lib: #{file}"
       
       next if @loaded_files.include?(file)
       require_relative file
       @loaded_files << file
     end
   rescue StandardError => e
-    puts "Failed to load libraries: #{e.message}"
+    puts "Failed to load libraries: #{e.message}, #{e.backtrace}"
   end
 
   private
@@ -48,7 +52,7 @@ class AppConfigLoader
 
   def load_config(yaml_directory)
     Dir[File.join(yaml_directory, '*.yaml')].each do |file|
-      puts "Config file: #{file}"
+      # puts "Config file: #{file}"
 
       erb = ERB.new(File.read(file)).result
       @config_data.merge!(YAML.safe_load(erb))

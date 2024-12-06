@@ -4,7 +4,7 @@ module Project_Hope
       attr_reader :logger
 
       def initialize_logger(config)
-        # puts "#{config['directory']}"
+        # puts "config: #{config}"
         
         log_directory = config['directory']
         log_level = config['level']
@@ -30,7 +30,7 @@ module Project_Hope
       end
 
       def log_processed_file(message)
-        puts "logger: #{logger}"
+        # puts "logger: #{logger}"
         @logger.info(message)
       end
 
