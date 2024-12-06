@@ -6,10 +6,10 @@ collection.generate_test_items(5)
 collection.method_missing(:show_all_items)
 
 puts "Saving"
-collection.save_to_file('items.txt')
-collection.save_to_csv('items.csv')
-collection.save_to_json('items')
-collection.save_to_yml('items')
+collection.save_to_file('../output/items.txt')
+collection.save_to_csv('../output/items.csv')
+collection.save_to_json('../output/items')
+collection.save_to_yml('../output/items')
 
 puts "Mapping"
 double_prices = collection.map { |item| item.price = item.price * 2; }

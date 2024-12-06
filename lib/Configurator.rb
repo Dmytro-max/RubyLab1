@@ -3,7 +3,7 @@ class Configurator
 
   def initialize
     @config = {
-      run_website_parser: 0,     # Запуск розбору сайту
+      # run_website_parser: 0,     # Запуск розбору сайту
       run_save_to_csv: 0,        # Збереження даних в CSV форматі
       run_save_to_json: 0,       # Збереження даних в JSON форматі
       run_save_to_yaml: 0,       # Збереження даних в YAML форматі
@@ -13,7 +13,12 @@ class Configurator
   end
 
   def configure(overrides = {})
+  @config.each do |key, value|
+    # puts "Config type:#{(key.class)} to #{value}"
+  end
     overrides.each do |key, value|
+      key = key.to_sym
+      # puts "Configuring type:#{(key.class)} to #{value}"
       if @config.key?(key)
         @config[key] = value
       else
@@ -24,7 +29,7 @@ class Configurator
 
   def self.available_methods
     %i[
-      run_website_parser
+      # run_website_parser
       run_save_to_csv
       run_save_to_json
       run_save_to_yaml
@@ -33,20 +38,3 @@ class Configurator
     ]
   end
 end
-
-# # Приклад використання
-# configurator = Configurator.new
-# puts configurator.config
-
-# # Налаштування конфігураційних параметрів
-# configurator.configure(
-#   run_website_parser: 1,      # Включити розбір сайту
-#   run_save_to_csv: 1,         # Включити збереження даних в CSV
-#   run_save_to_yaml: 1,        # Включити збереження даних в YAML
-#   run_save_to_sqlite: 1       # Включити збереження даних в базі даних SQLite
-# )
-
-# puts configurator.config
-
-# # Виведення доступних методів
-# puts Configurator.available_methods
