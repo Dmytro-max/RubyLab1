@@ -1,15 +1,21 @@
 web_scraping:
   # URL початкової сторінки для збору даних
-  start_page: https://rozetka.com.ua/ua/
+  start_page: "https://rozetka.com.ua/ua/tablets/c130309/"
+
+  token: ""
   
-  # CSS селектор для отримання назв продуктів
-  product_name_selector: "a.title"
+  product_link_selector: "a.product-link.goods-tile__heading"
   
-  # CSS селектор для отримання цін продуктів
-  product_price_selector: "div.price "
+  product_name_selector: "h1.title__font"
   
-  # CSS селектор для отримання опису продуктів
-  product_description_selector: ""
+  product_price_selector: "p.product-price__big"
   
-  # CSS селектор для отримання зображень продуктів
+  product_parameters: "div.product-about__sticky p.mt-4"
+
+  # product_description_selector: ""
+
+  product_category: "tablets"
+  
   product_image_selector: "img.image"
+
+  media_catalog: "media"

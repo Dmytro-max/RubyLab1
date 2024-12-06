@@ -54,7 +54,7 @@ module Project_Hope
     end
   end
 
-  class Cart
+  class ItemCollection
     include ItemContainer
     include Enumerable
 
@@ -63,44 +63,56 @@ module Project_Hope
     def initialize
       @items = []
       self.class.increment_object_count
-      LoggerManager.log_processed_file("Initialized Cart")
+      LoggerManager.log_processed_file("Initialized ItemCollection")
     end
 
     def each(&block)
       @items.each(&block)
     end
 
-    def save_to_file(filename)
-      File.open(filename, 'w') do |file|
+    def save_to_file(directory)
+      File.open(directory, 'w') do |file|
         @items.each { |item| file.puts item.inspect }
       end
-      LoggerManager.log_processed_file("Saved items to #{filename}")
+      LoggerManager.log_processed_file("Saved items to #{directory}")
     end
 
-    def save_to_json(filename = 'items.json')
-      filename.end_with?('.json') || filename.concat('.json')
-      
-      File.open(filename, 'w') do |file|
-        file.write(JSON.pretty_generate(@items.map(&:to_h)))
+    def save_to_json(directory = './catalogs')
+      # puts "Directory: #{directory}"
+      @items.each do |item|
+        # puts "Item name: #{item[:name]}"
+        File.open("#{directory}/#{item[:name]}.json", 'w') do |file|
+          file.write(JSON.pretty_generate(item.to_h))
+        end
       end
-      LoggerManager.log_processed_file("Saved items to #{filename}")
+      # File.open("#{directory}/data.json", 'w') do |file|
+      #   file.write(JSON.pretty_generate(item.to_h))
+      # end
+      LoggerManager.log_processed_file("Saved items to #{directory}")
     end
 
-    def save_to_csv(filename = 'items.csv')
-      filename.end_with?('.csv') || filename.concat('.csv')
+    def save_to_csv(directory = 'items.csv')
+      # puts "save_to_csv"
 
-      CSV.open(filename, 'w') do |csv|
-        csv << @items.first.to_h.keys
-        @items.each { |item| csv << item.to_h.values }
+      # csv = CSV.open(directory, 'w')
+      @items.each do |item|
+        CSV.open("#{directory}/#{item[:name]}.csv", 'w') do |csv|
+          csv << ["name", "price", "description", "category", "image_path"]
+          csv << [item[:name], item[:price], item[:description], item[:category], item[:image_path]]
+        end
       end
-      LoggerManager.log_processed_file("Saved items to #{filename}")
+      # CSV.open(directory, 'w') do |csv|
+      #   csv << @items.first.to_h.keys
+      #   @items.each { |item| csv << item.to_h.values }
+      # end
+      LoggerManager.log_processed_file("Saved items to #{directory}")
     end
 
-    def save_to_yml
-      filename.end_with?('.yml') || filename.concat('.yml')
+    def save_to_yml(directory = 'items.yml')
+      # puts "save_to_yml"
 
      @items.each do |item|
-        File.open("#{item.name}.yml", 'w') do |file|
+        File.open("#{directory}/#{item[:name]}.yml", 'w') do |file|
           file.write(item.to_h.to_yaml)
         end
       end
@@ -160,3 +172,6 @@ module Project_Hope
     end
   end
 end
+
+
+

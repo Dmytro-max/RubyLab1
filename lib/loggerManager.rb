@@ -4,6 +4,8 @@ module Project_Hope
       attr_reader :logger
 
       def initialize_logger(config)
+        # puts "config: #{config}"
+        
         log_directory = config['directory']
         log_level = config['level']
         log_files = config['files']
@@ -28,18 +30,19 @@ module Project_Hope
       end
 
       def log_processed_file(message)
-        logger.info(message)
+        # puts "logger: #{logger}"
+        @logger.info(message)
       end
 
       def log_error(message)
-        logger.error(message)
+        @logger.error(message)
       end
     end
   end
 end
 
 # # Приклад використання
-# config = YAML.load_file('logger_config.yaml')
-# MyApplicationName::LoggerManager.initialize_logger(config)
+# config = YAML.load_file('log_config.yaml')
+# MyApplicationName::LoggerManager.initialize_logger(config["logging"])
 # MyApplicationName::LoggerManager.log_processed_file('This is an info message.')
 # MyApplicationName::LoggerManager.log_error('This is an error message.')

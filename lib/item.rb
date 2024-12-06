@@ -15,6 +15,7 @@ module Project_Hope
 
       yield(self) if block_given?
 
+      # puts "Self: #{self}"
       LoggerManager.log_processed_file("Initialized Item: #{self.inspect}")
     end
 
@@ -37,12 +38,13 @@ module Project_Hope
     alias_method :info, :to_s
 
     def self.generate_fake
+      fname = Faker::Commerce.product_name
       new(
-        name: Faker::Commerce.product_name,
+        name: fname,
         price: Faker::Commerce.price,
         description: Faker::Lorem.sentence,
         category: Faker::Commerce.department,
-        image_path: Faker::LoremPixel.image
+        image_path: "../catalogs/#{fname}.jpg"
       )
     end
 
@@ -51,3 +53,4 @@ module Project_Hope
     end
   end
 end
+
